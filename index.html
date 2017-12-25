@@ -7,12 +7,17 @@
 <h2><u>Setup</u></h2>
 <p style="text-indent:5%" align="justify">
 <ul>
-  <li>Download JDK1.6 means Java Development Kit Version 1.6.</li>
-  <li>In it there is also JRE1.6 means Java Runtime Environment. </li>
-  <li>So no need to again download JRE separately. </li>
-  <li>Dont install just extract it from Zip and place it conveniently in some folder.  </li>
-  <li>Similarly, put ADK i.e. Android Development Kit. </li>
-  <li>Next, Make Sub-directories as I have made.See below: </li>
+  <li>Download JDK1.6 means Java Development Kit Version 1.6.Install it.</li>
+  <li>Download JRE1.6 means Java Runtime Environment. Install it.</li>
+  <li>Next, select any directory where you will make your project.</li>
+  <li>In that directory, make 5 sub-directories:- "java","class","jar","dex","res".</li>
+  <li>Concept is that you will make java programs as source code and keep in 'java' directory. </li>
+  <li>Using 'javac' command you will compile into ".class" files and keep in "class" directory. </li>
+  <li>While compiling you may need external libraries in '.jar' files. So keep them in 'jar' directory. </li>
+  <li>Then you will use 'dx' command to combine all class files into .dex file and keep in 'dex' directory. </li>
+  <li>Lastly you will make an '.apk' file from '.dex' file & '.jar' external libraries. </li>
+  <li>Using 'adb' command, you transfer the apk file app to ur mobile using usb data cable </li>
+  
 </ul>
   
 </p>
