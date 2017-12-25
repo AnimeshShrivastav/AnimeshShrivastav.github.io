@@ -10,13 +10,41 @@
   <li>Download JDK1.6 means Java Development Kit Version 1.6.Install it.</li>
   <li>Download JRE1.6 means Java Runtime Environment. Install it.</li>
   <li>Next, select any directory where you will make your project.</li>
-  <li>In that directory, make 5 sub-directories:- "java","class","jar","dex","res".</li>
+  <li>In that directory, make 5 sub-directories:- "java","class","plat","dex","res".</li>
   <li>Concept is that you will make java programs as source code and keep in 'java' directory. </li>
-  <li>Using 'javac' command you will compile into ".class" files and keep in "class" directory. </li>
-  <li>While compiling you may need external libraries in '.jar' files. So keep them in 'jar' directory. </li>
+  <li>Use 'aapt' command to read 'res' directory and generate corresponding java program 'R.java' again in same 'java' directory. </li>
+  <li>Using 'javac' command you will compile all java programs into ".class" files and keep in "class" directory. </li>
+  <li>While compiling you may need external libraries in '.jar' files which are also compressed '.class' files. So keep them also in 'class' directory. </li>
+  <li>Compulsory external library .jar file is android.jar of respective android version you target. We keep it in 'plat' directory separately for 'aapt' command </li>
   <li>Then you will use 'dx' command to combine all class files into .dex file and keep in 'dex' directory. </li>
-  <li>Lastly you will make an '.apk' file from '.dex' file & '.jar' external libraries. </li>
+  <li>Lastly you will make an '.apk' file fullfrom : application package,  by packing '.dex','.class' & files in 'res' directory together, using 'aapt' again.</li>
+  <li>Point is that 'dex' file is dalvic executable which will run on android operating system in mobile. </li>
+  <li>And that program will use images, sounds and other resource files from 'res' directory. </li>
   <li>Using 'adb' command, you transfer the apk file app to ur mobile using usb data cable </li>
+  
+</ul>
+  
+</p>
+
+<h2><u>Commands</u></h2>
+<p style="text-indent:5%" align="justify">
+<ul>
+  <li><i>aapt p -f -m -M AndroidManifest.xml -I plat/android.jar  -S res -J java</i></li>
+  <li>Above translates to:- Android App Package Tool(aapt) pack(p) , make directory if not exist (-m),force file overwrite (-f), 
+      (-M) manifest file is: AndroidManifest.xml , (-I) include the files from platfom/android.jar , (-S) reSource files in 'res' directory
+      , (-J) generate Java file in package's directory  com.pkg as given in AndroidManifest.xml file. 
+  <li><i>javac java/com/pkg/*.java -classpath class;pkg/android.jar;class/file1.jar;class/file2.jar;  -d class </i></li>
+  <li>Above translates to:- java-compile (javac) the .java files in package-directory and when you encounter new class variable , then find them
+      in class-paths i.e. in directory 'class'; or 'within zipped jar files of android.jar & external library file1.jar file1.jar etc. and finally
+      put the compiled classes again in 'class' directory itself.</li>  
+  <li><i>dx --dex --output=dex/classes.dex  class class/file1.jar class/file2.jar  </i></li>
+  <li>Above translates to:- dalvic executable command(dx) --dex means make a dex file output into directory 'dex' onto file 'classes.dex' by combining all classes</li>
+  <li><i>aapt p -v -f -m -M AndroidManifest.xml -I plat/android.jar  -S res -F app.apk  dex </i></li>
+  <li>Above translates to once again use aapt but this time to create .apk file by packaging .dex,android.jar respective platform or version classes, 'res' directory
+      and gather needed package directory location, permissions,hardware-features, activity, service etc. classes' names & intents & entry points from manifest file
+      (-F) means filename </li>
+  <li><i>adb install app.apk</i></li>
+  <li> For above to work adb driver for your system, has to be installed. </li>
   
 </ul>
   
