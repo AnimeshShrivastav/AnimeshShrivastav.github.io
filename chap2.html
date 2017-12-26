@@ -5,7 +5,7 @@
   Defining Java Class Files to Run Upon Launching An App by User on mobile, inside "AndroidManifest.xml" file
 </p></h1>
 <hr/>
-<a href="chap1.html">Earlier we saw sample java program which is shaped like an activity-class. </a>
+<a href="chap1.html">Earlier we saw sample java program which is shaped like an activity-class. </a><br/>
 
 <u>A Sample "AndroidManifest.xml" File</u><br/>
 
@@ -16,7 +16,8 @@
 
 &lt;?xml version="1.0" encoding="utf-8"?&gt; 
 
-&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.chhotahathee" android:versionCode="1"  android:versionName="1.0"&gt;
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" 
+package="com.pkg" android:versionCode="1"  android:versionName="1.0"&gt;
 
 &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
 
@@ -34,6 +35,10 @@
 </pre>
 </blockquote>
 </figure>
+
+Package attribute above signifies the sub directory where actual java source code resides.
+And also where 'javac' compiler command will store the generated compiled 'class' files within the (-d)destination directory.
+
 <a href="chap3.html">Next, we see inclusion of resources. </a>
 
 </body>
