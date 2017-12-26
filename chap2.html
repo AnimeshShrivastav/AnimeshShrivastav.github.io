@@ -24,7 +24,7 @@ package="com.pkg" android:versionCode="1"  android:versionName="1.0"&gt;
 
 &lt;uses-permission android:name="android.permission.INTERNET" /&gt;
 
-&lt;application android:label="Chhotahathee" android:icon="@drawable/icon"&gt; 
+&lt;application android:label="MyApp" android:icon="@drawable/icon"&gt; 
         &lt;activity  android:name="MainActivity"&gt;
             &lt;intent-filter&gt;
                 &lt;action android:name="android.intent.action.MAIN" /&gt;
@@ -36,9 +36,23 @@ package="com.pkg" android:versionCode="1"  android:versionName="1.0"&gt;
 
 </pre>
 
+Line By Line Translation of above file:-
+<li>Use XML Language version 1.0 to interpret this xml file. Also interpret characters as Universal Text Code-8 bit chunks ASCII etc</li>
+<li>xml name-space or xmlns is the prefix to add to all variables encountered here in this xml file, just to make them uniquely understood by android.jar.
+ Also now onwards android can be used as a short form rather than such big url type prefix.</li>
+<li>Package attribute above signifies the sub directory where actual java source code resides.
+And also where 'javac' compiler command will store the generated compiled 'class' files within the (-d)destination directory.</li>
+<li>Version Code and Name together constitute latest update of your app like version 1.0 earliest, then 1.1 next update etc. </li>
+<li>Permission is to be prompted to user during installation, say from google play store.<li>
+<li> android:name & android:label etc. will define variables name , label,etc. for use in each tagged line of xml statement </li>
+<li> label & icon variables are defined for application tag of xml</li>
+<li> Similarly each activity's name is defined under variable android:name under activity tag statement of xml</li>
+<li> Then name & category variables are defined for intent statement of xml. </li>
+<li> Intent of MAIN action will define the main entry point i.e. associated activity will be created first by operating system of mobile </li>
+<li> Category name LAUNCHER will mean that when mobile's inbuilt launcher is used to launch or start the app. </li>
+ 
 
-Package attribute above signifies the sub directory where actual java source code resides.
-And also where 'javac' compiler command will store the generated compiled 'class' files within the (-d)destination directory.
+
 
 <a href="chap3.html">Next, we see inclusion of resources. </a>
 
