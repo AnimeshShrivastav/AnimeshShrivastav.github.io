@@ -25,6 +25,41 @@
 <li>They have all resources of mobile available to them like screen,mic,camera,gps,etc. as they asked in there manifest</li>
 <li>When these activities run, they can start threads of other classes instantiated objects.</li>
 <li>Thus a chain of programs will run as per user's itentions.</li> 
+<p>
+<u>A Sample Plain Java Program</u><br/>
+//Name of Program=Hello.java<br/>
+package com.pkg<br/><br/>
+import java.io.*;<br/><br/>
+
+public class Hello<br/>
+{<p style="margin-left:5%">
+  public static void main(String[] args)<br/>
+  {<p style="text-indent:10%">
+      System.out.println("Hello");
+   <p style="margin-left:5%">
+  }
+</p>
+}<br/>
+
+<u>A Sample Android Java Program</u><br/>
+//Name of Program=Hello.java<br/>
+package com.pkg<br/><br/>
+import java.io.*;<br/>
+import android.os.*;<br/>
+import android.app.*;<br/>
+
+public class Hello extends Activity<br/>
+{<p style="margin-left:5%">
+  public void onCreate(Bundle b)<br/>
+  {<p style="margin-left:10%">
+      TextView info=new TextView(this);<br/>
+      info.setText("Hello");<br/>
+      setContentView(info);<br/>
+   <p style="margin-left:5%">
+  }
+</p>
+}
+
 
 
 </body>
