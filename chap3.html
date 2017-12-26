@@ -23,10 +23,10 @@ Incase you put it in 'layout' sub directory under 'res' directory, then setConte
 
 <pre>
 
-<?xml version="1.0" encoding="utf-8" ?>
+&lt;?xml version="1.0" encoding="utf-8" ?&gt;
 
- <TextView  xmlns:android="http://schemas.android.com/apk/res/android"  android:layout_width="match_parent"   
-   android:layout_height="match_parent"    android:text="Hello,World!"     />
+ &lt;TextView  xmlns:android="http://schemas.android.com/apk/res/android"  android:layout_width="match_parent"   
+   android:layout_height="match_parent"    android:text="Hello,World!"     /&gt;
 
 </pre>
 
@@ -59,19 +59,19 @@ public class Main extends Activity
 
 <u>Corresponding AndroidManifest.xml , the manifest File, kept in root(top-most) directory</u><br/>
 <pre>
-<?xml version="1.0" encoding="utf-8"?>
+&lt;?xml version="1.0" encoding="utf-8"?&gt;
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.test" android:versionCode="1"  android:versionName="1.0">
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.test" android:versionCode="1"  android:versionName="1.0"&gt;
 
-    <application android:label="Test" android:icon="@drawable/icon"> 
-        <activity  android:name="Main">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-    </application>
-</manifest>
+    &lt;application android:label="Test" android:icon="@drawable/icon"&gt; 
+        &lt;activity  android:name="Main"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+            &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;
 </pre>
 
 
