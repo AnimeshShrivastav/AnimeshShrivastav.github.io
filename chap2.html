@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1><p align="center">
+  Defining Java Class Files to Run Upon Launching An App by User on mobile, inside "AndroidManifest.xml" file
+</p></h1>
+<hr/>
+<a href="chap1.html">Earlier we saw sample java program which is shaped like an activity-class. </a>
+
+<u>A Sample "AndroidManifest.xml" File</u><br/>
+
+<figure>
+<blockquote>
+<pre>
+<code>
+
+&lt;?xml version="1.0" encoding="utf-8"?&gt; 
+
+&lt;manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.chhotahathee" android:versionCode="1"  android:versionName="1.0"&gt;
+
+&lt;uses-permission android:name="android.permission.INTERNET" /&gt;
+
+&lt;application android:label="Chhotahathee" android:icon="@drawable/icon"&gt; 
+        &lt;activity  android:name="MainActivity"&gt;
+            &lt;intent-filter&gt;
+                &lt;action android:name="android.intent.action.MAIN" /&gt;
+                &lt;category android:name="android.intent.category.LAUNCHER" /&gt;
+         &lt;/intent-filter&gt;
+        &lt;/activity&gt;
+    &lt;/application&gt;
+&lt;/manifest&gt;
+
+</code>
+</pre>
+</blockquote>
+</figure>
+<a href="chap3.html">Next, we see inclusion of resources. </a>
+
+</body>
+</html>
