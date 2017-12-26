@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+       <style>
+
+          pre{overflow:auto;white-space:pre-wrap;font-size:1em;}
+       </style>
+</head>
+<body>
+<h1><p align="center">
+  Enjoying 'res' directory Resources while making Android-App
+</p></h1>
+<hr/>
+<a href="chap2.html">Earlier we saw sample AndroidManifest.xml File & what it does? </a><br/>
+
+As you know 'setContentView(viewVariable);' will set the View-Screen on mobile when current activity is running.
+A convenient method is to define this viewVariable as .xml file , say 'main.xml'.
+I choose 'main' considering its our starting activity or main activity which is auto created by launching our app.
+Then we can call this function like:- setContentView(R.main);
+Incase you put it in 'layout' sub directory under 'res' directory, then setContentView(R.layout.main);
+
+<u>A Sample view file main.xml</u><br/>
+
+<pre>
+
+<?xml version="1.0" encoding="utf-8" ?>
+
+ <TextView  xmlns:android="http://schemas.android.com/apk/res/android"  android:layout_width="match_parent"   
+   android:layout_height="match_parent"    android:text="Hello,World!"     />
+
+</pre>
+
+Line By Line Translation of above file:-
+<li>Use XML Language version 1.0 to interpret this xml file. Also interpret characters as Universal Text Code-8 bit chunks ASCII etc</li>
+<li>xml name-space or xmlns is the prefix to add to all variables encountered here in this xml file, just to make them uniquely understood by android.jar.
+ Also now onwards android can be used as a short form rather than such big url type prefix.</li>
+
+<li> TextView Tagged XML statement meaning a TextView Class is instantiated with given variables.</li>
+<li> Its width & height is equal to parent i.e. mobile screen. </li>
+<li> Its text to display is 'Hello,world!'</li>
+
+<u>Corresponding java source code program file main.java</u><br/>
+
+<pre>
+package com.test; //meaning this program stored in test sub-directory under com directory.
+ 
+import android.os.*;       //import compiled classes to connect to operating system(os) of mobile
+import android.app.*;      //import compiled classes that make Application (app) which has 'activity' class to capture mobile-screen
+
+public class Main extends Activity 
+{
+    public void onCreate(Bundle b) //on the creation of Main Activity & Mobile-Screen for our app, gather bundle of variables 'b' from o/s.
+    {
+        super.onCreate(b);  // let the 'Activity' onCreate() function take-over.
+        setContentView(R.layout.main);  // set the view content of mobile screen as defined in main.xml kept in layout sub-dir of res(R) directory
+    }
+}
+</pre>
+
+<u>Corresponding AndroidManifest.xml , the manifest File, kept in root(top-most) directory</u><br/>
+<pre>
+<?xml version="1.0" encoding="utf-8"?>
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.test" android:versionCode="1"  android:versionName="1.0">
+
+    <application android:label="Test" android:icon="@drawable/icon"> 
+        <activity  android:name="Main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+</pre>
+
+
+<a href="chap4.html">Next, we see full-project-programs. </a>
+
+</body>
+</html>
