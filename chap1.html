@@ -33,9 +33,9 @@ import java.io.*;<br/><br/>
 
 public class Hello<br/>
 {<p style="margin-left:5%">
-  public static void main(String[] args)<br/>
+  public static void main(String[] args) /* String[] args are associated runtime parameters*/ <br/>
   {<p style="text-indent:10%">
-      System.out.println("Hello");
+      System.out.println("Hello"); /* we dont instantiate Hello class because it has main() function which will be auto-called by PC o/s when run */
    <p style="margin-left:5%">
   }
 </p>
@@ -46,15 +46,15 @@ public class Hello<br/>
 package com.pkg<br/><br/>
 import java.io.*;<br/>
 import android.os.*;<br/>
-import android.app.*;<br/>
+import android.app.*;<br/><br/>
 
-public class Hello extends Activity<br/>
+public class Hello extends Activity /* this Hello class is extension of inbuilt 'Activity' class in android.jar library of classes */<br/>
 {<p style="margin-left:5%">
-  public void onCreate(Bundle b)<br/>
+  public void onCreate(Bundle b)/*because its instantiated by mobiles's operating system we put code inside this function.Bundle is like String[] args */ <br/> 
   {<p style="margin-left:10%">
-      TextView info=new TextView(this);<br/>
-      info.setText("Hello");<br/>
-      setContentView(info);<br/>
+      TextView info=new TextView(this); /* make a 'TextView' variable rather object called info. 'this' means this class's object will have the TextView assigned */<br/>
+      info.setText("Hello"); /* set the text displayed inside ="Hello". TextView is kind of text-box */<br/>
+      setContentView(info);  /* set the overall viewable content i.e. mobile screen to point to this TextView */<br/>
    <p style="margin-left:5%">
   }
 </p>
