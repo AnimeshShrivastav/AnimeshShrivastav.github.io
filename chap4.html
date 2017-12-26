@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+       <style>
+
+          pre{overflow:auto;white-space:pre-wrap;font-size:1em;}
+       </style>
+</head>
+<body>
+<h1><p align="center">
+  Making useful small java programs which can be used in real apps
+</p></h1>
+<hr/>
+<a href="chap3.html">Earlier we explored a bit of 'res' Resource directory's layout sub-directories' xml written view for mobile screen. </a><br/>
+
+Smallest deployable unit of java programs are compiled '.class' files. When many such related '.class' files are packed and compressed in zip files, 
+they are called 'Jar' Files. They serve as library of 'classes'.
+
+We will make a 'Locator' Java Program which when compiled becomes a usefull module in '.class' form . Giving a plug-n-play type functionality
+in the realm of API(application programming interface). This program is a 'locator' class which can keep track of current geo-location i.e. Lat,Long
+of android-mobile. 
+
+<u>Locator.java</u><br/>
+
+<pre>
+package com.loc;
+
+import android.content.*;
+import android.os.*;
+import android.app.*;
+import android.location.*;
+
+import java.util.*;
+
+public class Locator 
+{
+  LocationListener ll;LocationManager lm;Location l; //inbuilt classes of android.location package
+  Context ctx;                                       //context of Application-cum-activity which is calling this class.
+
+  public Locator(Context c)
+  {
+    ll=null;lm=null;l=null;ctx=c;
+    ll= new LocationListener()    //an inbuilt LocationListener class whose constructed objects provide location to its onLocationChanged() function.
+ 	{
+  	public void onLocationChanged(Location l) {   this.l=l;  }  // whenever new location-update arrives, this cross-object function is called. 
+	public void onProviderDisabled(String provider) { }
+        public void onProviderEnabled(String provider) {  }
+        public void onStatusChanged(String provider, int status, Bundle extras) { }
+        };
+    locate();
+  }
+
+  void locate()
+  {
+    lm = (LocationManager)ctx.getSystemService(Context.LOCATION_SERVICE); // A Location-Access permission-granted Application-Activity's Context can bring this service
+    l = lm.getLastKnownLocation( LocationManager.GPS_PROVIDER);           //Last Recorded Position through GPS
+    if(l==null)l = lm.getLastKnownLocation( LocationManager.NETWORK_PROVIDER); //If not GPS, then get network-derived position.
+    lm.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000,0f , ll);        // Initiate location-updates via GPS for this object managing location
+    lm.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 1000, 0f, ll);    // ------------------------- via Network -----------------------------
+//Point to note is that manager is managing to transmit the position from gps/network to a listener.
+//GPS & NETWORK are CONTENT-PROVIDERS
+//LocationManager is getting the content by LOCATION-SERVICE.
+//LocationManager is transmitting received updated locations from service, to LocationListener
+   }
+
+}
+
+
+</pre>
+
+
+<a href="chap5.html">Next, we see how we can use a java .class module in another useful program. </a>
+
+</body>
+</html>
