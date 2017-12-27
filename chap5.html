@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+       <style>
+
+          pre{overflow:auto;white-space:pre-wrap;font-size:1em;}
+       </style>
+</head>
+<body>
+<h1><p align="center">
+  Using a class module in an app
+</p></h1>
+<hr/>
+<a href="chap4.html">Earlier we saw making class module 'Locator'. </a><br/>
+
+Here we deploy the class 'Locator' we made.
+
+<u>MainActivity.java</u><br/>
+
+<pre>
+package com.myapp;
+
+import android.os.*;
+import android.app.*;
+import android.widget.*;
+import android.location.*;
+
+//using java 1.6
+
+import java.util.*;
+
+public class MainActivity extends Activity implements Runnable
+{
+  TextView info;
+  Locator loc;
+  Thread t;
+  Location last=null,now=null;
+  
+    @Override
+    public void onCreate(Bundle b) 
+    {
+        super.onCreate(b);              // call inbuilt 'activity' class's onCreate() to initialize graphics device screen of mobile
+        setContentView(R.layout.main);  // It has a 'info' id text-view to display location
+    }
+
+    public void onResume() //initialized touch-screen and now resumed to get user's touch-actions to respond to...
+    {
+        super.onResume();  //initialization code to be called from super function.
+        try{
+               startThread();    // without try catch it will unfortunately stop
+           }catch(Exception e){Toast.makeText(this,e.toString(),Toast.LENGTH_LONG);}
+    }
+
+  public void run()   // implementing runnable gives a run function which runs on separate process context(i.e. thread)
+  {
+         while(true) //keep on doing the below code 
+         {
+                 now=loc.l;                                       //utilize the Locator class's object 'loc' to know current position.
+                 if( now != last && now!=null )updateLoc(nowFix); //update display of current position in mobile-screen app's user-interface
+                 last=now;
+                 try{Thread.sleep(1000);}catch(Exception e){}  //give 1 second free-time for activity to update user-interface etc.
+         }
+  }
+
+  void startThread()
+  {
+      loc=new Locator(getApplicationContext());
+      t=new Thread(this); //create a thread outside of this process which can be run endlessly.
+      t.start();          // start the code written inside run function from a separate process context
+  }
+ 
+  void updateLoc(Location l)  {     info.setText(l.toString());  }
+}
+                  
+</pre>
+
+
+<a href="chap6.html">Next, we see how we can combine external libraries. </a>
+
+</body>
+</html>
