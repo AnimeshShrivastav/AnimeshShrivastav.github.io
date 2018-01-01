@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+       <style>
+
+          pre{overflow:auto;white-space:pre-wrap;font-size:1em;}
+       </style>
+</head>
+<body>
+<h1><p align="center">
+  Demo of User Registration using Backendless API
+</p></h1>
+<hr/>
+<a href="chap5.html">Earlier we saw ..... </a><br/>
+
+Here we see User Registration
+
+<br/><u>OnlineUsers.java</u><br/>
+
+<pre>
+package pkg.app;
+public class OnlineUsers
+{
+	public String location;
+	public String password;
+	public String username;
+}
+                
+</pre>
+
+<u>Backend.java</u><br/>
+<pre>
+package pkg.app;
+import android.content.*;
+import com.backendless.*;
+import com.backendless.persistence.*;
+
+public class Backend 
+{	Context c;	Global g;	OnlineUsers u;		DataQueryBuilder query;
+	IDataStore<OnlineUsers> table;	List<OnlineUsers> result;
+
+	public Backend(Context ctx)
+    	{
+    		this.c=ctx;g=(Global) c;u=new OnlineUsers();
+    		u.location=g.ucell;u.username=g.umail;u.password=g.upass;result=null;
+		Toast.makeText(c,"Logging..",Toast.LENGTH_LONG).show();
+		Backendless.setUrl( Defaults.SERVER_URL );
+        	Backendless.initApp( c, Defaults.APPLICATION_ID, Defaults.API_KEY );
+		table=Backendless.Data.of( OnlineUsers.class );
+		query=DataQueryBuilder.create();
+		String where="username = '"+ u.username +"'";
+		query.setWhereClause(where);
+		result=table.find(query);
+		if(result.size()==0)
+			{
+				Toast.makeText(c,"Registering as new user..",Toast.LENGTH_LONG).show();
+				g.register=true;table.save(u);
+			}
+		if(result.size()==1)
+			{
+				Toast.makeText(c,"You are successfully logged in...",Toast.LENGTH_LONG).show();
+				g.login=true;	
+			}
+		
+	}
+
+}                                    
+</pre>
+
+<u>Login.java</u><br/>
+<pre>
+package pkg.app;
+import android.os.*;import android.app.*;import android.view.*;import android.widget.*;import android.content.*;
+
+public class Login extends Activity
+{
+	public void onCreate(Bundle b)
+	{
+		super.onCreate(b);setContentView(R.layout.login);
+	}
+
+        public void login(View v)
+        {
+		Global g=(Global) getApplicationContext();EditText et1,et2,et3;
+		et1=(EditText)findViewById(R.id.umail);
+		et2=(EditText)findViewById(R.id.upass);
+		et3=(EditText)findViewById(R.id.ucell);
+                g.umail=""+et1.getText();g.upass=""+et2.getText();g.ucell=""+et3.getText();
+		new Backend(getApplicationContext());              	
+		startActivity(new Intent(Login.this,MyMap.class) );               
+        }
+}         
+</pre>
+
+<u>Global.java</u><br/>
+<pre>
+package pkg.app;
+import android.os.*;import android.app.*;
+public class Global extends Application
+{
+   public String umail;
+   public String upass;
+   public String ucell;
+   public boolean login=false;
+   public boolean register=false;
+
+}
+</pre>
+
+<a href="chap7.html">Next, we see .... </a>
+
+</body>
+</html>
